@@ -14,8 +14,6 @@ const PROJECTILE_HEIGHT = 0.05;
 const PROJECTILE_SPEED = 0.02;
 const SHOOTER_Y = -0.9;
 
-let heartImage = new Image();
-heartImage.src = "life.png"; 
 
 function init() {
     const canvas = document.getElementById('gameCanvas');
@@ -51,22 +49,7 @@ function init() {
         shootProjectile(clickPos);
     });
 
-    // Initialize the health display with hearts
-    updateHealthDisplay();
 }
-
-function updateHealthDisplay() {
-    const healthContainer = document.getElementById('healthContainer');
-    healthContainer.innerHTML = ''; // Clear previous hearts
-    for (let i = 0; i < shooter.health; i++) {
-        const img = document.createElement('img');
-        img.src = 'life.png';  // Use the correct path to your image
-        img.style.width = '30px';  // Set size for hearts
-        img.style.height = '30px';
-        healthContainer.appendChild(img);  // Add heart image for each life
-    }
-}
-
 
 function gameLoop() {
     updateLevel();  // Update the level based on score
