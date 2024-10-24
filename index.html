@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2D Shooter Game in WebGL</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Link to the CSS file -->
+  </head>
+  <body>
+    <div id="scoreHealthDisplay">
+      <h3>Level: <span id="levelDisplay">1</span></h3>
+      <h3>Score: <span id="scoreDisplay">0</span></h3>
+      <h3>Health: <span id="healthDisplay">3</span></h3>
+    </div>
+    <div id="gameContainer">
+      <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <!-- Vertex Shader -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec2 a_position;
+      attribute vec2 a_texCoord;
+      varying vec2 v_texCoord;
+      void main() {
+          gl_Position = vec4(a_position, 0, 1);
+          v_texCoord = a_texCoord;
+      }
+    </script>
+
+    <!-- Fragment Shader -->
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      varying vec2 v_texCoord;
+      uniform sampler2D u_texture;
+      void main() {
+          gl_FragColor = texture2D(u_texture, v_texCoord);
+      }
+    </script>
+    <audio id="shootSound" src="shoot.mp3" preload="auto"></audio>
+    <audio
+      id="blockDestroySound"
+      src="block-destroy.mp3"
+      preload="auto"
+    ></audio>
+
+    <script src="main.js"></script>
+  </body>
+</html>
